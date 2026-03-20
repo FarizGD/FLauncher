@@ -1,0 +1,194 @@
+Package: vcpkg-cmake-config
+Version: 2024-05-23
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 98671fc4239ce0c2aefc6a9e09ce064b7813a8261194d4e62a0702a869533d13
+Status: install ok installed
+
+Package: vcpkg-cmake
+Version: 2024-04-23
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 51b52faeaa9a6015ae99cbf38f2330abdd2cf54b5f869c061f12e1562d5cd02c
+Status: install ok installed
+
+Package: cmark
+Version: 0.31.1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 1c6f0e68db886b1352715a096d0fe4a3650be240a208cf7674d975a6ea9033fc
+Description: CommonMark parsing and rendering library
+Status: install ok installed
+
+Package: ecm
+Version: 6.7.0
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 4aedd74cee214e3d377f23261dcf52ee1ebe8dc9b695974d2892b2eebe7c1a62
+Description: Extra CMake Modules (ECM), extra modules and scripts for CMake
+Status: install ok installed
+
+Package: zstd
+Version: 1.5.7
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 1b0d4741c1eabd86be52d538fc03e3ca6293f922e801faf1a3a6263b5f431b1e
+Description: Zstandard - Fast real-time compression algorithm
+Status: install ok installed
+
+Package: lzo
+Version: 2.10
+Port-Version: 9
+Depends: vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 4272d67432a9bd09856861d7e7786bf72c304db972d10a9a5fac623b618955f7
+Description: Lossless data compression library
+Status: install ok installed
+
+Package: liblzma
+Version: 5.8.1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: da96bdae2b9810f3743ff5a7402c8122cd6f489639c824c457b46480def3cca5
+Description: Compression library with an API similar to that of zlib.
+Status: install ok installed
+
+Package: lz4
+Version: 1.10.0
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: ce3ea0cde4239e41438fe4a78235ed890c03a92ee82a18e65fae5588cfe7ad56
+Description: Lossless compression algorithm, providing compression speed at 400 MB/s per core.
+Status: install ok installed
+
+Package: zlib
+Version: 1.3.1
+Depends: vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: bd992ee0159e517fb4b7260901f6f1010676af89232348510a524ebb1c07a6d8
+Description: A compression library
+Status: install ok installed
+
+Package: bzip2
+Version: 1.0.8
+Port-Version: 6
+Depends: vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 05ef6fb5a0b79a5c7a2afe36b7ce461c991e3b40316bce126e7f5aaf3b84d951
+Description: bzip2 is a freely available, patent free, high-quality data compressor. It typically compresses files to within 10% to 15% of the best available techniques (the PPM family of statistical compressors), whilst being around twice as fast at compression and six times faster at decompression.
+Default-Features: tool
+Status: install ok installed
+
+Package: bzip2
+Feature: tool
+Architecture: x64-windows
+Multi-Arch: same
+Description: Builds bzip2 executable
+Status: install ok installed
+
+Package: libarchive
+Version: 3.8.2
+Depends: vcpkg-cmake, zlib
+Architecture: x64-windows
+Multi-Arch: same
+Abi: ed6c230632589853a48bfdad680f2c621399b10a047f12d3511f6d51803d8b7f
+Description: Library for reading and writing streaming archives
+Default-Features: bzip2, crypto, lz4, lzma, xar, zstd
+Status: install ok installed
+
+Package: libarchive
+Feature: bzip2
+Depends: bzip2
+Architecture: x64-windows
+Multi-Arch: same
+Description: BZip2 support
+Status: install ok installed
+
+Package: libarchive
+Feature: lz4
+Depends: lz4
+Architecture: x64-windows
+Multi-Arch: same
+Description: Lz4 support
+Status: install ok installed
+
+Package: libarchive
+Feature: lzma
+Depends: liblzma
+Architecture: x64-windows
+Multi-Arch: same
+Description: Lzma support
+Status: install ok installed
+
+Package: libarchive
+Feature: lzo
+Depends: lzo
+Architecture: x64-windows
+Multi-Arch: same
+Description: Lzo support
+Status: install ok installed
+
+Package: libarchive
+Feature: zstd
+Depends: zstd
+Architecture: x64-windows
+Multi-Arch: same
+Description: Zstd support
+Status: install ok installed
+
+Package: libqrencode
+Version: 4.1.1
+Port-Version: 3
+Depends: vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: e720fa2be7bb95fdade606e1a26fae869aae423bedbe36bdb72bf04c9c301e10
+Description: libqrencode - a fast and compact QR Code encoding library
+Status: install ok installed
+
+Package: vcpkg-cmake-get-vars
+Version: 2025-05-29
+Depends: vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: fa4abecd1a34f0209d0bb3e37b87e1049280c2c150609088f00307d513113e46
+Status: install ok installed
+
+Package: vcpkg-tool-meson
+Version: 1.8.2
+Depends: vcpkg-cmake-get-vars
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 979521660153d589800d54efb2b88a986de6c991bd63209197d7c653d2a573c2
+Description: Meson build system
+Status: install ok installed
+
+Package: pkgconf
+Version: 2.5.1
+Port-Version: 4
+Depends: vcpkg-tool-meson
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 8d130545c27199f95cba790318336b1d9d70c57d28dc77031cbdb782c65bd785
+Description: pkgconf is a program which helps to configure compiler and linker flags for development libraries. It is similar to pkg-config from freedesktop.org.
+Status: install ok installed
+
+Package: tomlplusplus
+Version: 3.4.0
+Port-Version: 1
+Depends: vcpkg-cmake-config, vcpkg-tool-meson
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 51328b531f8a9f59dfe0f0d4718a850c538461c473d0978026f8f53c102eb8e0
+Description: Header-only TOML config file parser and serializer for modern C++.
+Status: install ok installed
+

@@ -362,7 +362,7 @@ void InstallDialog::done(int result)
                 seq->addTask(makeShared<Java::SymlinkTask>(final_path));
                 task = seq;
 #endif
-                connect(task.get(), &Task::failed, this, [this, &deletePath](QString reason) {
+                connect(task.get(), &Task::failed, this, [this, deletePath](QString reason) {
                     QString error = QString("Java download failed: %1").arg(reason);
                     CustomMessageBox::selectable(this, tr("Error"), error, QMessageBox::Warning)->show();
                     deletePath();
@@ -371,6 +371,9 @@ void InstallDialog::done(int result)
                 ProgressDialog pg(this);
                 pg.setSkipButton(true, tr("Abort"));
                 pg.execWithTask(task.get());
+                // Keep the picker open after a failed or cancelled installation.
+                if (!task->wasSuccessful())
+                    return;
             } else {
                 return;
             }

@@ -2,6 +2,8 @@
 
 This file describes how to build FLauncher on Windows, Linux, and macOS.
 
+The active integrated launcher uses React/Go in `LeviLauncher/`. Run `./scripts/build-flauncher.ps1`; see [`NATIVE-LAUNCHER.md`](NATIVE-LAUNCHER.md). The Avalonia wrapper is superseded. The instructions below describe the retained legacy C++ fork.
+
 FLauncher is a CMake + Qt 6 project. The repo includes CMake presets and a `vcpkg.json` manifest.
 
 ## Common Requirements

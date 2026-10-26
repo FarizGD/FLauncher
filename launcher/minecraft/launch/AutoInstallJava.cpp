@@ -260,7 +260,7 @@ void AutoInstallJava::downloadJava(Meta::Version::Ptr version, QString javaName,
 #endif
             connect(m_current_task.get(), &Task::failed, this, [this, deletePath](QString reason) {
                 deletePath();
-                emitFailed(reason);
+                emit logLine(tr("Java installation failed: %1. Trying the next compatible runtime.").arg(reason), MessageLevel::Warning);
             });
             connect(m_current_task.get(), &Task::aborted, this, deletePath);
             connect(m_current_task.get(), &Task::succeeded, this, [this] { setJavaPathFromRuntimeName(m_selectedRuntimeName); });
@@ -287,8 +287,7 @@ void AutoInstallJava::tryNextMajorJava()
         emit logLine(
             tr("No versions of Java were found for your operating system: %1-%2").arg(SysInfo::currentSystem(), SysInfo::useQTForArch()),
             MessageLevel::Warning);
-        emit logLine(tr("No compatible version of Java was found. Using the default one."), MessageLevel::Warning);
-        emitSucceeded();
+        emitFailed(tr("No compatible Java runtime could be installed. Check your connection or select a working Java runtime in instance settings."));
         return;
     }
     auto majorJavaVersion = majorJavaVersions[m_majorJavaVersionIndex];

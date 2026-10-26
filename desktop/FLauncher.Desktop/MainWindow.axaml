@@ -1,0 +1,19 @@
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="FLauncher.Desktop.MainWindow" Title="FLauncher" Width="1180" Height="780" MinWidth="920" MinHeight="640">
+  <Grid ColumnDefinitions="220,*" RowDefinitions="*,Auto">
+    <Border Background="#151B21" Padding="22,30" Grid.RowSpan="2" BorderBrush="#28313B" BorderThickness="0,0,1,0">
+      <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Spacing="6" Margin="0,0,0,36"><TextBlock Text="F /" FontSize="32" FontWeight="Bold" Foreground="#B6ECC5"/><TextBlock Text="FLauncher" FontSize="22" FontWeight="SemiBold"/><TextBlock Text="YOUR NEXT ADVENTURE" FontSize="10" LetterSpacing="1.5" Classes="muted"/></StackPanel>
+        <StackPanel DockPanel.Dock="Bottom" Spacing="12"><TextBlock Text="Two editions. One home." Classes="muted" FontSize="12"/><TextBlock Text="Built on open source ↗" Foreground="#B6ECC5" FontSize="12"/></StackPanel>
+        <StackPanel x:Name="Navigation" Spacing="8">
+          <Button Content="⌂    Play" Tag="Play" Classes="nav active" Click="Navigate"/>
+          <Button Content="▦    Library" Tag="Library" Classes="nav" Click="Navigate"/>
+          <Button Content="↓    Java runtimes" Tag="Java" Classes="nav" Click="Navigate"/>
+          <Button Content="⚙    Settings" Tag="Settings" Classes="nav" Click="Navigate"/>
+          <Button Content="♡    Credits" Tag="Credits" Classes="nav" Click="Navigate"/>
+        </StackPanel>
+      </DockPanel>
+    </Border>
+    <ScrollViewer Grid.Column="1" Padding="36,30" HorizontalScrollBarVisibility="Disabled"><StackPanel x:Name="Page" Spacing="22"/></ScrollViewer>
+    <Border Grid.Column="1" Grid.Row="1" Padding="28,13" Background="#151B21"><TextBlock x:Name="Status" Text="Ready for your next adventure" FontSize="12" Classes="muted"/></Border>
+  </Grid>
+</Window>

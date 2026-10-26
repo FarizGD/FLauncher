@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "runtime": "win-x64",
+  "prism": {
+    "version": "11.1.1",
+    "url": "https://github.com/PrismLauncher/PrismLauncher/releases/download/11.1.1/PrismLauncher-Windows-MinGW-w64-Portable-11.1.1.zip",
+    "sha256": "05841d0b3bfc0a8212658457cc6035e1c29cd7ffae919464e874e384cbe8d062",
+    "sourceUrl": "https://github.com/PrismLauncher/PrismLauncher/releases/download/11.1.1/PrismLauncher-11.1.1.tar.gz",
+    "sourceSha256": "9ea53f93714cd2a59dc0f38153690a59a3f06f439934d1410ec364cc7f363eb5"
+  },
+  "levi": {
+    "version": "0.3.13",
+    "url": "https://github.com/LiteLDev/LeviLauncher/releases/download/v0.3.13/LeviLauncher.exe",
+    "sha256": "0d6a7513f8f64bdcf2c2026dfe922f06fe5e2159e2e4fc7c4fca702ece8da38c",
+    "sourceUrl": "https://codeload.github.com/LiteLDev/LeviLauncher/tar.gz/refs/tags/v0.3.13",
+    "sourceSha256": "27b6057900050e49dea1ec608651a174af6abecf8990d84656ddf0499bd01816"
+  }
+}

@@ -62,3 +62,9 @@ flatbuild
 
 # Snap
 *.snap
+
+# Avalonia / .NET build outputs
+desktop/**/bin/
+desktop/**/obj/
+desktop/**/TestResults/
+artifacts/

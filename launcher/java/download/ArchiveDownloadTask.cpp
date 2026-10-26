@@ -37,7 +37,7 @@ ArchiveDownloadTask::ArchiveDownloadTask(QUrl url, QString final_path, QString c
 static QString parseChecksumFile(const QByteArray& data)
 {
     const auto text = QString::fromUtf8(data);
-    static const QRegularExpression re(R"(([0-9a-fA-F]{40,64}))");
+    static const QRegularExpression re(R"((?<![0-9a-fA-F])([0-9a-fA-F]{64}|[0-9a-fA-F]{40})(?![0-9a-fA-F]))");
     auto match = re.match(text);
     if (!match.hasMatch()) {
         return {};
@@ -51,6 +51,13 @@ void ArchiveDownloadTask::executeTask()
     setStatus(tr("Downloading Java"));
 
     auto startArchiveDownload = [this](const QString& checksumHash) {
+        const auto expectedLength = m_checksum_type == "sha256" ? 64 : m_checksum_type == "sha1" ? 40 : 0;
+        if (!m_checksum_type.isEmpty() &&
+            (expectedLength == 0 || checksumHash.size() != expectedLength ||
+             QByteArray::fromHex(checksumHash.toUtf8()).size() != expectedLength / 2)) {
+            emitFailed(tr("The Java download checksum is missing or invalid. Please retry the download."));
+            return;
+        }
         MetaEntryPtr entry = APPLICATION->metacache()->resolveEntry("java", m_url.fileName());
 
         auto download = makeShared<NetJob>(QString("JRE::DownloadJava"), APPLICATION->network());
@@ -86,9 +93,8 @@ void ArchiveDownloadTask::executeTask()
         auto checksumAction = Net::Download::makeCached(checksumUrl, checksumEntry);
         checksumJob->addNetAction(checksumAction);
 
-        connect(checksumJob.get(), &Task::failed, this, [this, startArchiveDownload](QString) {
-            qWarning() << "Failed to download checksum for" << m_url;
-            startArchiveDownload(QString());
+        connect(checksumJob.get(), &Task::failed, this, [this](QString reason) {
+            emitFailed(tr("Could not download the Java checksum: %1").arg(reason));
         });
         connect(checksumJob.get(), &Task::succeeded, this, [checksumEntry, startArchiveDownload] {
             auto data = FS::read(checksumEntry->getFullPath());
@@ -127,7 +133,7 @@ void ArchiveDownloadTask::extractJava(QString input)
     m_task = makeShared<MMCZip::ExtractZipTask>(input, m_final_path, firstFolderParts.value(0));
 
     auto progressStep = std::make_shared<TaskStepProgress>();
-    connect(m_task.get(), &Task::finished, this, [this, progressStep] {
+    connect(m_task.get(), &Task::succeeded, this, [this, progressStep] {
         progressStep->state = TaskStepState::Succeeded;
         stepProgress(*progressStep);
     });

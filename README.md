@@ -1,6 +1,8 @@
 ### FLauncher
 
-> FLauncher is a fork of Prism Launcher focused on a redesigned QML UI. It is not affiliated with or endorsed by the Prism Launcher project.
+> FLauncher now uses LeviLauncher's React/Go foundation with Java and Bedrock services inside one application. It originated as a Prism Launcher fork and is not endorsed by either upstream project.
+
+Build the active launcher with `./scripts/build-flauncher.ps1`. Run `artifacts/FLauncher-native/FLauncher.exe`. It always stores its library in the adjacent `Flauncher` folder; move both together on a writable NTFS USB drive. See [the integrated launcher guide](NATIVE-LAUNCHER.md) for features, current limits and tests. The old Avalonia wrapper in `desktop/` is superseded.
 
 <p align="center">
 <picture>

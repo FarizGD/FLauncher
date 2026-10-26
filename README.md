@@ -2,9 +2,32 @@
 
 **FLauncher is a portable Minecraft launcher for Windows that brings Java Edition and Bedrock Edition management into one application.**
 
-The current launcher is built on LeviLauncher's React/Go foundation, with FLauncher's Java Edition integration alongside the existing Bedrock services. It does not launch a separate Prism Launcher or LeviLauncher window.
+The active source build uses LeviLauncher's React/Go foundation, with FLauncher's Java Edition integration alongside the existing Bedrock services. It does not open a separate Prism Launcher or LeviLauncher window.
 
 > FLauncher originated as a Prism Launcher fork. It is an independent project and is not endorsed by or affiliated with Prism Launcher, LeviLauncher, Mojang, or Microsoft.
+
+## Download
+
+**Latest published release: [FLauncher v2.0.0](https://github.com/FarizGD/FLauncher/releases/tag/v2.0.0)**
+
+- [Download FLauncher-Portable-Win64-Shipping.exe](https://github.com/FarizGD/FLauncher/releases/download/v2.0.0/FLauncher-Portable-Win64-Shipping.exe) (Windows 64-bit, approximately 34 MB)
+- [View release notes and SHA-256](https://github.com/FarizGD/FLauncher/releases/tag/v2.0.0)
+
+The published release currently provides a standalone Windows executable. Download it from the release page and run it. Windows may display a security warning for downloaded applications; only continue if you trust the source and have reviewed the release details.
+
+The release lists this SHA-256 checksum:
+
+```
+e57d0fa18375e6608ad1c7ca864fa4451b936449b2828b9005457be0a2c26bed
+```
+
+To verify the downloaded file in PowerShell:
+
+```powershell
+Get-FileHash .\FLauncher-Portable-Win64-Shipping.exe -Algorithm SHA256
+```
+
+Compare the result with the checksum above. The release links to [VirusTotal's report for this file](https://www.virustotal.com/gui/file/e57d0fa18375e6608ad1c7ca864fa4451b936449b2828b9005457be0a2c26bed).
 
 ## Features
 
@@ -32,15 +55,9 @@ The current launcher is built on LeviLauncher's React/Go foundation, with FLaunc
 
 Windows package support, Gaming Services, WebView2, and account sign-in may still be required. Trial availability and limitations are controlled by Microsoft.
 
-## Download and run
+## Portable storage
 
-1. Open the [FLauncher repository](https://github.com/FarizGD/FLauncher).
-2. Download `FLauncher-native-win-x64.zip` from a published release or build artifact, when available.
-3. Extract the ZIP and run `FLauncher.exe`.
-
-You can also run `artifacts/FLauncher-native/FLauncher.exe` after building from source.
-
-**Portable storage:** FLauncher stores launcher-managed data in the `Flauncher` folder beside `FLauncher.exe`. Keep the executable and that folder together when moving the launcher. For USB use, a writable NTFS drive is recommended. Custom Java executables outside the portable folder remain external dependencies.
+FLauncher is designed to keep launcher-managed data in the `Flauncher` folder beside the executable. Keep the executable and its adjacent data folder together when moving the launcher. For USB use, a writable NTFS drive is recommended. Custom Java executables outside the portable folder remain external dependencies.
 
 Existing Prism data is not migrated automatically. Older FLauncher profiles may be copied into the portable data folder with the launcher closed; do not copy old mods junctions. Existing system Bedrock worlds must be imported into a portable instance.
 
@@ -65,17 +82,17 @@ Run these commands from the repository root in PowerShell:
 ./scripts/verify-flauncher.ps1 -Executable artifacts/FLauncher-native/FLauncher.exe
 ```
 
-The build script generates Wails bindings, runs Go tests and frontend checks, builds the production frontend, embeds it, and creates the executable and ZIP artifact.
+The build script generates Wails bindings, runs Go tests and frontend checks, builds the production frontend, embeds it, and creates the executable and ZIP artifact. The source build outputs `artifacts/FLauncher-native/FLauncher.exe` and, by default, `artifacts/FLauncher-native-win-x64.zip`.
 
 For additional build details, live-install checks, test coverage, account behavior, and diagnostics, see [NATIVE-LAUNCHER.md](NATIVE-LAUNCHER.md).
 
-> `BULDING.md` documents the retained legacy C++/Qt fork. The integrated React/Go application described above is the active launcher.
+> `BULDING.md` documents the retained legacy C++/Qt fork. The integrated React/Go application described above is the active source build.
 
 ## Troubleshooting
 
 - **The application does not open:** Check that WebView2 is installed and supported on your Windows system.
 - **Bedrock installation fails:** Check `Flauncher/logs/bedrock-install.log`. The log records installation-stage diagnostics and is designed to exclude tokens and account credentials.
-- **The launcher was moved to another drive:** Move `FLauncher.exe` and its adjacent `Flauncher` folder together.
+- **The launcher was moved to another drive:** Move the executable and its adjacent `Flauncher` folder together.
 - **Java mods appear in multiple instances:** This is expected. Java instances share the same mods directory.
 - **An account needs to sign in again:** Online account tokens are protected for the current Windows user and may require reauthentication under another user.
 
